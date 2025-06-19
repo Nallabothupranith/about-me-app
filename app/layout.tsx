@@ -27,11 +27,14 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={`${geistSans.className} antialiased`}>
+      <body
+        className={`min-h-screen bg-[#181a20] text-white font-sans ${geistSans.className} antialiased`}
+        style={{ backgroundColor: "#181a20" }}
+      >
         <ThemeProvider
           attribute="class"
-          defaultTheme="system"
-          enableSystem
+          defaultTheme="dark"
+          enableSystem={false}
           disableTransitionOnChange
         >
           <Navbar />

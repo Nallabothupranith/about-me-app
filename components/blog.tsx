@@ -22,15 +22,15 @@ export default function BlogComponent() {
   }, []);
 
   async function fetchBlogs() {
-    const res = await fetch("/api/blogs");
+    const res = await fetch("/api/articles");
     const data = await res.json();
-    setBlogs(data);
+    setBlogs(data ?? []);
   }
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     setLoading(true);
-    await fetch("/api/blogs", {
+    await fetch("/api/articles", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ tittle, content }),
