@@ -1,4 +1,6 @@
-const Blog = () => {
-  return <>This is the blog page.</>;
+import BlogComponent from "@/components/blog";
+
+const blog = () => {
+  return <BlogComponent />;
 };
-export default Blog;
+export default blog;
