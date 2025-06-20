@@ -1,5 +1,5 @@
-import Image from "next/image";
 import { Footer } from "@/components/footer";
+import { ZoomableImage } from "@/components/zoomable-image";
 
 const SKILLS = [
   "JavaScript",
@@ -86,8 +86,8 @@ const Page = () => {
           </div>
           {/* Right: Image */}
           <div className="flex-1 flex justify-center items-center">
-            <Image
-              src="/avatar.svg"
+            <ZoomableImage
+              src="/pranith.jpg"
               alt="Pranith photo"
               width={288}
               height={288}

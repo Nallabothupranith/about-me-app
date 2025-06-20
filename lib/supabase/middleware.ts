@@ -16,10 +16,11 @@ export async function updateSession(request: NextRequest) {
   const isBlogApi = request.nextUrl.pathname === "/api/blogs";
   const isProtectedMethod = ["POST", "PUT", "DELETE"].includes(request.method);
 
-  // Protect /articles/create for authenticated users only
+  // Protect /articles/create and /expense for authenticated users only
   const isArticlesCreate = request.nextUrl.pathname === "/articles/create";
+  const isExpense = request.nextUrl.pathname === "/expense";
 
-  if ((isBlogApi && isProtectedMethod) || isArticlesCreate) {
+  if ((isBlogApi && isProtectedMethod) || isArticlesCreate || isExpense) {
     const supabase = createServerClient(
       process.env.NEXT_PUBLIC_SUPABASE_URL!,
       process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
@@ -50,10 +51,10 @@ export async function updateSession(request: NextRequest) {
     } = await supabase.auth.getUser();
 
     if (!user) {
-      // no user, redirect to /auth/login, after login go to /articles
+      // no user, redirect to /auth/login, after login go to the protected page
       const url = request.nextUrl.clone();
       url.pathname = "/auth/login";
-      url.search = "?redirect=/articles";
+      url.search = `?redirect=${request.nextUrl.pathname}`;
       return NextResponse.redirect(url);
     }
   }
