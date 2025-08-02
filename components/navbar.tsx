@@ -31,10 +31,15 @@ export function Navbar() {
             <Link
               key={link.name}
               href={link.href}
-              className="px-4 py-2 rounded-xl text-base font-medium text-gray-800 dark:text-gray-100 transition-all duration-200 hover:bg-white/40 dark:hover:bg-gray-800/40 hover:backdrop-blur-md hover:shadow-md hover:text-blue-600 dark:hover:text-blue-300 focus:outline-none focus:ring-2 focus:ring-blue-200 dark:focus:ring-blue-700"
-              style={{ display: "inline-block" }}
+              className="relative px-5 py-2 rounded-xl text-base font-semibold text-gray-900 dark:text-white transition-all duration-300 overflow-hidden group border border-white/20 dark:border-gray-700/40 shadow-lg focus:outline-none focus:ring-2 focus:ring-blue-200 dark:focus:ring-blue-700 bg-gradient-to-br from-white/70 via-blue-100/60 to-white/30 dark:from-gray-800/80 dark:via-blue-900/40 dark:to-gray-900/10 hover:from-blue-200 hover:via-white hover:to-blue-100 dark:hover:from-blue-900 dark:hover:via-gray-800 dark:hover:to-blue-900/30 backdrop-blur-xl"
+              style={{
+                display: "inline-block",
+                boxShadow: "0 4px 24px 0 rgba(0,0,0,0.10)",
+              }}
             >
-              {link.name}
+              <span className="relative z-10 drop-shadow-md group-hover:text-blue-600 dark:group-hover:text-blue-300">
+                {link.name}
+              </span>
             </Link>
           ))}
         </div>
@@ -63,16 +68,18 @@ export function Navbar() {
       </div>
       {/* Mobile Menu */}
       {open && (
-        <div className="md:hidden bg-white/70 dark:bg-gray-900/80 backdrop-blur-xl border-t border-white/30 dark:border-gray-700/60 shadow-2xl animate-fade-in-down">
-          <div className="flex flex-col gap-2 px-4 py-4">
+        <div className="md:hidden bg-gradient-to-br from-white/90 via-blue-100/80 to-white/60 dark:from-gray-900/95 dark:via-blue-900/60 dark:to-gray-900/40 backdrop-blur-2xl border-t border-white/20 dark:border-gray-700/40 shadow-2xl animate-fade-in-down">
+          <div className="flex flex-col gap-3 px-4 py-6">
             {NAV_LINKS.map((link) => (
               <Link
                 key={link.name}
                 href={link.href}
-                className="px-4 py-3 rounded-xl text-lg font-medium text-gray-900 dark:text-gray-100 transition-all duration-200 hover:bg-white/40 dark:hover:bg-gray-800/40 hover:backdrop-blur-md hover:shadow-md hover:text-blue-600 dark:hover:text-blue-300 focus:outline-none focus:ring-2 focus:ring-blue-200 dark:focus:ring-blue-700"
-                onClick={() => setOpen(false)}
+                className="relative px-5 py-3 rounded-xl text-lg font-semibold text-gray-900 dark:text-white transition-all duration-300 overflow-hidden group border border-white/20 dark:border-gray-700/40 shadow-lg focus:outline-none focus:ring-2 focus:ring-blue-200 dark:focus:ring-blue-700 bg-gradient-to-br from-white/70 via-blue-100/60 to-white/30 dark:from-gray-800/80 dark:via-blue-900/40 dark:to-gray-900/10 hover:from-blue-200 hover:via-white hover:to-blue-100 dark:hover:from-blue-900 dark:hover:via-gray-800 dark:hover:to-blue-900/30 backdrop-blur-xl"
+                onClick={() => setTimeout(() => setOpen(false), 100)}
               >
-                {link.name}
+                <span className="relative z-10 drop-shadow-md group-hover:text-blue-600 dark:group-hover:text-blue-300">
+                  {link.name}
+                </span>
               </Link>
             ))}
           </div>

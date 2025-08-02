@@ -2,7 +2,6 @@
 
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
-import AddExpenseForm from "@/components/add-expense-form";
 import {
   Dialog,
   DialogContent,
@@ -10,6 +9,7 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
+import AddExpenseForm from "./add-expense-form";
 
 export function AddExpenseDialog() {
   const [open, setOpen] = useState(false);
@@ -17,9 +17,7 @@ export function AddExpenseDialog() {
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
-        <Button className="bg-[#2f81f7] hover:bg-[#1e5bbf] text-white font-semibold">
-          Add Expense
-        </Button>
+        <Button>Add Expense</Button>
       </DialogTrigger>
       <DialogContent>
         <DialogHeader>

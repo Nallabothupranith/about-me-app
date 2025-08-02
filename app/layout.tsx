@@ -28,12 +28,11 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body
-        className={`min-h-screen bg-[#181a20] text-white font-sans ${geistSans.className} antialiased`}
-        style={{ backgroundColor: "#181a20" }}
+        className={`min-h-screen bg-gradient-to-br from-white via-[#e6e9fa] to-[#bfc7f7] text-gray-900 font-sans ${geistSans.className} antialiased`}
       >
         <ThemeProvider
           attribute="class"
-          defaultTheme="dark"
+          defaultTheme="light"
           enableSystem={false}
           disableTransitionOnChange
         >

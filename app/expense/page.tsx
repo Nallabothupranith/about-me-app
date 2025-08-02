@@ -10,6 +10,8 @@ import {
 import { format } from "date-fns";
 import { createClient } from "@/lib/supabase/server";
 import { redirect } from "next/navigation";
+import { DeleteExpenseButton } from "@/components/delete-expense-button";
+import { EditExpenseDialog } from "@/components/edit-expense-dialog";
 
 export default async function ExpensePage() {
   const supabase = await createClient();
@@ -45,22 +47,27 @@ export default async function ExpensePage() {
               <TableRow>
                 <TableHead>Date</TableHead>
                 <TableHead>Category</TableHead>
-                <TableHead className="text-right">Amount</TableHead>
+                <TableHead>Amount</TableHead>
                 <TableHead>Notes</TableHead>
+                <TableHead className="text-right">Actions</TableHead>
               </TableRow>
             </TableHeader>
             <TableBody>
               {expenses &&
-                expenses.map((expense, index) => (
-                  <TableRow key={index}>
+                expenses.map((expense) => (
+                  <TableRow key={expense.id}>
                     <TableCell>
                       {format(new Date(expense.date), "PPP")}
                     </TableCell>
                     <TableCell>{expense.category}</TableCell>
-                    <TableCell className="text-right">
-                      ${expense.amount.toFixed(2)}
-                    </TableCell>
+                    <TableCell>INR {expense.amount.toFixed(2)}</TableCell>
                     <TableCell>{expense.notes}</TableCell>
+                    <TableCell className="text-right">
+                      <div className="flex justify-end items-center gap-2">
+                        <EditExpenseDialog expense={expense} />
+                        <DeleteExpenseButton expenseId={expense.id} />
+                      </div>
+                    </TableCell>
                   </TableRow>
                 ))}
             </TableBody>

@@ -1,32 +1,26 @@
 const projects = [
   {
-    title: "Personal Portfolio",
+    title: "Global Expense Tracker",
     description:
-      "A modern, responsive portfolio website to showcase my skills, experience, and blog articles. Built with Next.js, Tailwind CSS, and Supabase.",
-    tech: ["Next.js", "Tailwind CSS", "Supabase"],
-    link: "https://your-portfolio.com",
+      "A powerful and intuitive expense tracking application for individuals and teams worldwide. Easily log, categorize, and visualize your spending, set budgets, and collaborate with others. Built with Next.js App Router and Supabase for real-time data, authentication, and secure cloud storage.",
+    tech: ["Next.js App Router", "Supabase"],
+    link: "https://global-exp-tracker.vercel.app/", // You can update this with your live link
   },
   {
-    title: "Task Manager App",
+    title: "Shopping Web (E-commerce)",
     description:
-      "A full-featured task management app with real-time collaboration, drag-and-drop, and notifications.",
-    tech: ["React", "Node.js", "Socket.io", "MongoDB"],
-    link: "https://your-taskmanager.com",
+      "A modern e-commerce platform built with Next.js App Router and Supabase. Features product browsing, cart, checkout, and user authentication. Currently in development—stay tuned for updates!",
+    tech: ["Next.js App Router", "Supabase"],
+    link: "#", // Update with your live link when ready
   },
   {
-    title: "E-commerce Store",
+    title: "Coded-Pad",
     description:
-      "A scalable e-commerce platform with product search, cart, checkout, and admin dashboard.",
-    tech: ["Next.js", "Stripe", "PostgreSQL", "Prisma"],
-    link: "https://your-store.com",
+      "A collaborative code editor where you can write, save, and revisit code snippets later. Built with React, Express, and MongoDB for real-time editing and persistent storage. Perfect for quick prototyping and sharing code with others.",
+    tech: ["React", "Express", "MongoDB"],
+    link: "#", // Update with your live link when ready
   },
-  {
-    title: "Blog Platform",
-    description:
-      "A markdown-powered blog platform with authentication, comments, and tag-based search.",
-    tech: ["Next.js", "Supabase", "MDX"],
-    link: "https://your-blog.com",
-  },
+  // Add more projects here in the future
 ];
 
 export default function Projects() {
@@ -70,7 +64,7 @@ export default function Projects() {
                 </div>
               </div>
               <span className="relative z-10 mt-auto inline-block text-center px-4 py-2 rounded-lg bg-blue-600 text-white font-semibold shadow-lg transition-all duration-150 group-hover:scale-110 group-hover:shadow-blue-400/40 group-hover:bg-blue-700 text-base sm:text-lg">
-                View Project
+                {project.link !== "#" ? "Go Live" : "Coming Soon"}
               </span>
             </a>
           ))}

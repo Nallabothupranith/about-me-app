@@ -25,20 +25,20 @@ const skills = [
 const education = [
   {
     degree: "B.Tech in Computer Science",
-    institution: "XYZ University",
-    year: "2018 - 2022",
+    institution: "SRKR COLLEGE",
+    year: "2023 - 2027",
     icon: <FaGraduationCap className="text-blue-600 mr-2" />,
   },
   {
     degree: "Intermediate (MPC)",
-    institution: "ABC Junior College",
-    year: "2016 - 2018",
+    institution: "NARAYANA JUNIOR COLLEGE",
+    year: "2021 - 2023",
     icon: <FaBook className="text-green-600 mr-2" />,
   },
   {
     degree: "10th Class (SSC)",
-    institution: "DEF High School",
-    year: "2015 - 2016",
+    institution: "KENNEDY SCHOOL",
+    year: "2020 - 2021",
     icon: <FaBook className="text-yellow-600 mr-2" />,
   },
 ];
