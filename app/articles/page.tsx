@@ -30,22 +30,19 @@ export default async function ArticlesPage({
   // Filter by tag if present
   const tag = searchParams?.tag;
   let articles = [];
-  let error = null;
   if (tag) {
-    const { data, error: err } = await supabase
+    const { data } = await supabase
       .from("articles")
       .select("id, title, slug, content, minutes_to_read, created_at, tags")
       .contains("tags", [tag])
       .order("created_at", { ascending: false });
     articles = data ?? [];
-    error = err;
   } else {
-    const { data, error: err } = await supabase
+    const { data } = await supabase
       .from("articles")
       .select("id, title, slug, content, minutes_to_read, created_at, tags")
       .order("created_at", { ascending: false });
     articles = data ?? [];
-    error = err;
   }
 
   // Check if user is authenticated
@@ -67,46 +64,53 @@ export default async function ArticlesPage({
           </Link>
         ))}
       </div>
-      <div className="w-full max-w-2xl flex flex-col gap-6">
+      <div className="w-full max-w-6xl grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
         {articles.length === 0 ? (
-          <div className="glass-card p-6 sm:p-8 text-center text-base sm:text-lg text-gray-700 rounded-2xl shadow-lg">
+          <div className="glass-card p-6 sm:p-8 text-center text-base sm:text-lg text-gray-700 rounded-2xl shadow-lg w-full col-span-full">
             No articles found.
           </div>
         ) : (
           articles.map((article) => (
-            <Card key={article.id} className="glass-card shadow-lg">
-              <CardHeader>
-                <CardTitle className="text-xl sm:text-2xl font-bold text-blue-700">
+            <Card
+              key={article.id}
+              className="glass-card shadow-xl w-full rounded-2xl border border-blue-100/40 backdrop-blur-md bg-white/60 hover:scale-[1.02] transition-transform flex flex-col justify-between min-h-[260px]"
+            >
+              <CardHeader className="pb-2">
+                <div className="text-xs font-bold text-gray-500 uppercase tracking-wider mb-1">
+                  {article.tags && article.tags.length > 0
+                    ? article.tags[0]
+                    : "General"}
+                </div>
+                <div className="text-xs text-gray-400 mb-1">
+                  {article.created_at
+                    ? new Date(article.created_at).toLocaleDateString()
+                    : ""}
+                </div>
+                <CardTitle className="text-lg font-bold text-blue-800 leading-tight mb-1">
                   <Link
                     href={`/articles/${article.slug}`}
-                    className="break-words"
+                    className="break-words hover:underline"
                   >
                     {article.title}
                   </Link>
                 </CardTitle>
-                <div className="flex flex-wrap gap-2 mt-2">
-                  {article.tags?.map((tag: string) => (
-                    <span
-                      key={tag}
-                      className="px-2 py-1 rounded bg-blue-100 text-blue-700 text-xs font-semibold"
-                    >
-                      {tag}
-                    </span>
-                  ))}
+                <div className="text-xs text-gray-600 mb-2">
+                  {/* Author placeholder, replace with real author if available */}
+                  By Anonymous
                 </div>
               </CardHeader>
-              <CardContent>
-                <div className="text-gray-700 mb-2 text-sm sm:text-base break-words">
+              <CardContent className="flex-1 flex flex-col justify-between">
+                <div className="text-gray-700 mb-4 text-sm break-words">
                   {article.content?.slice(0, 120)}
                   {article.content?.length > 120 ? "..." : ""}
                 </div>
-                <div className="flex flex-col sm:flex-row justify-between items-center mt-4 gap-2">
-                  <span className="text-xs sm:text-sm text-gray-500">
+                <div className="flex items-center justify-between mt-auto">
+                  <span className="text-xs text-gray-500">
                     {article.minutes_to_read} min read
                   </span>
                   <Link
                     href={`/articles/${article.slug}`}
-                    className="btn-primary w-full sm:w-auto text-center"
+                    className="text-blue-700 font-semibold hover:underline text-xs"
                   >
                     Read More
                   </Link>
