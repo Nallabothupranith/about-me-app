@@ -1,6 +1,6 @@
 "use client";
 import { Footer } from "@/components/footer";
-import { ZoomableImage } from "@/components/zoomable-image";
+import Image from "next/image";
 import { useRouter } from "next/navigation";
 
 const SOCIALS = [
@@ -70,12 +70,13 @@ const Page = () => {
         {/* Right: Image */}
         <div className="flex-1 flex flex-col items-center justify-center">
           <div className="rounded-[2.5rem] border-8 border-blue-700 shadow-2xl p-2 bg-white/60 transition-transform duration-300 hover:scale-105 hover:shadow-blue-300/60">
-            <ZoomableImage
+            <Image
               src="/pranith.jpg"
               alt="Pranith photo"
               width={288}
               height={360}
               className="w-72 h-80 object-cover rounded-[2rem] transition-transform duration-300"
+              priority
             />
           </div>
           <div className="mt-6 text-center text-lg font-semibold text-gray-800">

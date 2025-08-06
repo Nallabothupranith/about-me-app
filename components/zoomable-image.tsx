@@ -30,11 +30,7 @@ export function ZoomableImage({
           alt={alt}
           width={width}
           height={height}
-          className={cn(
-            "transition-opacity duration-300",
-            isZoomed ? "opacity-0" : "opacity-100",
-            className
-          )}
+          className={cn(className)}
         />
       </div>
 
@@ -44,13 +40,13 @@ export function ZoomableImage({
           className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-75 animate-fade-in"
           onClick={toggleZoom}
         >
-          <div className="relative animate-zoom-in">
+          <div className="relative animate-zoom-in w-full h-full flex items-center justify-center">
             <Image
               src={src}
               alt={alt}
-              width={width * 3}
-              height={height * 3}
-              className="max-w-[90vw] max-h-[90vh] object-contain rounded-lg shadow-2xl"
+              fill
+              className="object-contain rounded-lg shadow-2xl"
+              priority
             />
           </div>
         </div>
